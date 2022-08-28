@@ -1,0 +1,125 @@
+>>>>> ORGANIZAÇÃO:
+Fazer um script para gerar uma referência para artigo no padrão abnt 
+
+Colocar o script para escrever em arquivos txt as referências feitas com formato de escrita no txt : DATA QUE FOI FEITA, HORÁRIO, NOME DE QUEM FEZ  e salvar em pastas específicas de acordo com as datas (a depender da data, ter pastas diferentes)
+
+Futuramente armazenar as referências em um banco de dados
+
+Versionar código no github 
+
+Gerador de referência aleatória baseado em um tema (VER LOGICA PARA CONSTRUÇÃO DISSO - NEM QUE SEJA WEB SCRAPPING PARA PESQUISAR NO GOOGLE ACADÊMICO E PEGAR OS 5 PRIMEIROS LINKS, ENCONTRAR O PDF, ABRIR ELE E PROCURAR A PARTE REFERÊNCIAS OU REFERENCES E CAPTURAR AS 5 PRIMEIRAS E RETORNAR)
+
+Outrs alternativa dessa função seria baseado ainda no Google acadêmico, extrair o html da página, pegar a ocorrência de "Cite" e jogar em um json, daí trazer do json pra o script que vai organizar no padrão abnt ou então capturar a primeira ocorrência de autor, título, ano, link do artigo e outras coisas que precisar e jogar em uma formatação abnt de forma automática com o Selenium (a formatação é só pegar armazenar em variáveis e criar uma string que ja vai conter a parada toda formatada)
+
+Gerador de referência a partir da entrada de um link e um arquivo pdf (usar o link como base para link de acesso, colocar a data de acesso do dia, mês do dia) Do PDF capturar os devidos dados a partir da leitura usando o pandas
+
+
+>>> Quem está fazendo a referência ? Inserir nome completo e email
+
+>>> Tipos de referência - Inputs a receber (CRIAR LÓGICA CASO NAO TENHA ALGUM DADO):
+(CRIAR LÓGICA FORMATAÇÃO DE CASO NAO TENHA : https://normas-abnt.espm.br/index.php?title=Documento_sem_data,_local_de_publica%C3%A7%C3%A3o)
+
+>> DE LIVRO ?
+> SIM : 
++NUMERO DE AUTORES :
+1 - INSERIR : Sobrenome, Nome, Título, Tem subtitulo ? (Sim : colocar / Não : Pass), Tem edição? (Sim : colocar / Não: Pass, Local de publicação, Editora, Data de publicação da obra Edição
+
+<=3 - INSERIR : Quantos autores ? (máximo 3)
+Loop até a quantidade de autores - INSERIR : 
+Sobrenome, Nome,Título, Tem subtitulo ? (Sim : colocar / Não : Pass), Tem edição? (Sim : colocar / Não: Pass, Local de publicação, Editora, Data de publicação da obra
+
+>3 - INSERIR : Quantos autores ? Colocar dados de todos ? (Sim : Gerar inputs até a quantidade de autores / Não : Gerar input de 1 autor e colocar et al)
+INSERIR : Título, Tem subtitulo ? (Sim : colocar / Não : Pass), Tem edição? (Sim : colocar / Não: Pass, Local de publicação, Editora, Data de publicação da obra
+
+== 0 - INSERIR : Título, Cidade, Editora, Ano de publicação, Página
+> NÃO : PASS
+
+>> ARTIGO ONLINE  ?
+> SIM : 
++NUMERO DE AUTORES :
+1 - INSERIR : Sobrenome, Nome, Título, Tem subtitulo ? (Sim : colocar / Não : Pass), Nome do site, ano, Link, Dia do acesso, Mês de acesso
+
+<=3 - INSERIR : Quantos autores ? (máximo 3)
+Loop até a quantidade de autores - INSERIR : Sobrenome, Nome, Título, Tem subtitulo ? (Sim : colocar / Não : Pass), Nome do site, ano, Link, Dia do acesso, Mês de acesso
+
+>3 - INSERIR : Quantos autores ? Colocar dados de todos ? (Sim : Gerar inputs até a quantidade de autores / Não : Gerar input de 1 autor e colocar et al)
+INSERIR : Sobrenome, Nome, Título, Tem subtitulo ? (Sim : colocar / Não : Pass), Nome do site, ano, Link, Dia do acesso, Mês de acesso
+
+== 0 - INSERIR : Nome do site, Título, Tem subtitulo ? (Sim : colocar / Não : Pass), Ano, Link, Data de acesso, Mês de acesso
+
+> NÃO : PASS
+
+>> CONSTITUIÇÃO FEDERAL OU ESTADUAL?
+> SIM : INSERIR -
+Pais, Constituição (Federal ou Estadual ? Federal - / Estadual - ),  Nome (exemplo: Constituição da República Federativa do Brasil), Nome da região coberta pela constituição(exemplo : Brasília - DF) Região coberta pela constituição (exemplo : Senado Federal), ano, link, data de acesso, mês de acesso, ano de acesso
+
+> NÃO : PASS
+
+>> LEGISLAÇÃO COMUM ?
+> SIM : INSERIR - Número da lei, Dia da lei, mês da lei, ano da lei, Função da lei, versão do diário oficial da união, número, data de publicação do diário onde a lei foi divulgada, Seção,  Link, data de acesso, mês de acesso, ano de acesso
+
+> NÃO : PASS
+
+>> ARTIGO DE REVISTA ?
+> SIM : INSERIR - Sobrenome, Nome, Título do artigo, Título da Revista, Local de Publicação, Número do volume, Numero do fascículo, Páginas inicial, Páginas final, mês, ano
+
+> NÃO : PASS
+
+>> TESE ?
+> SIM : INSERIR - Sobrenome, Nome, Título, Subtítulo, Ano de apresentação, Tem folhas ? ( Sim : inserir número de folhas / Não : pass ) , Tem volume ? (Sim : Inserir número de volumes / Não : Pass) Nenhum dos 2 ? (Pass) , Intituição, Local, Ano da defesa 
+
+> NÃO : EXIT PROGRAM
+
+
+>>>>> TIPOS DE REFERÊNCIA ABNT (PEGAR DAQUI A FORMATAÇÃO DE STRINGS) :
+>> Livro com um autor :
+SOBRENOME, Nome Abreviado. Título: subtítulo (se houver). Edição (se houver). Local de publicação: Editora, data de publicação da obra.
+
+>> Livro com até três autores (só colocar ponto e vírgula ;) :
+SOBRENOME, Nome Abreviado; SOBRENOME, Nome Abreviado. Título: subtítulo (se houver). Edição (se houver). Local de publicação: Editora, data de publicação da obra.
+
+>> Livro com mais de três autores
+Em casos de mais de três autores, pode ser difícil incluir todos na citação, embora não haja regra que proíba isso. Uma alternativa muito utilizada é a inclusão apenas do nome do primeiro autor, seguido da expressão “et al”, que, em latim, significa “e outros”.
+
+SOBRENOME, Nome Abreviado. et al. Título: subtítulo (se houver). Edição (se houver). Local de publicação: Editora, data de publicação da obra.
+
+>> Livro com autor desconhecido :
+TÍTULO EM CAIXA ALTA – Cidade – Editora – ano de publicação – página
+
+>> Artigo online :
+SOBRENOME, Nome Abreviado. Título: subtítulo (se houver). Nome do site, ano. Disponível em: (link). Acesso em: (data).
+
+>> Artigo online sem autor conhecido  : 
+Nome do site. Título: subtítulo (se houver). Nome do site, ano. Disponível em: (link). Acesso em: (data).
+
+>> Constituição federal ou estadual 
+
+EXEMPLOS : BRASIL. [Constituição (1988)]. Constituição da República Federativa do Brasil de 1988. Brasília, DF: Presidência da República, [2016]. Disponível em: http://www.planalto.gov.br/ccivil_03/Constituicao/ Constituiçao.htm. Acesso em: 1 jan. 2017.
+
+É muito importante especificar a região coberta pela constituição do trecho citado. Além disso, é preciso incluir o local de sede do órgão constituinte, o ano de publicação e a página.
+
+Veja um outro exemplo de citação da Constituição Federal de 1988:
+
+BRASIL. Constituição (1988). Constituição da República Federativa do Brasil. Brasília, DF: Senado Federal: Centro Gráfico, 1988. Página.
+
+
+>> Legislação comum
+Já quando a citação se refere a um artigo da legislação comum, o modelo a ser seguido deve ser o apresentado a seguir.
+
+BRASIL. Lei nº X.XXX, de XX de mês de ANO. Função da lei. Diário Oficial da União, Brasília, DF, v. XX, n. XX, data de publicação do diário onde a lei foi divulgada. Seção, páginas.
+
+>> Artigo de revista
+Se você quer incluir um artigo de revista em suas referências bibliográficas, é importante indicar a página de início e fim da citação. Confira o modelo padrão a seguir.
+
+SOBRENOME, nome abreviado. Título do artigo. Título da Revista, (abreviado ou não) Local de Publicação, Número do Volume, Número do Fascículo, Páginas inicial-final, mês e ano.
+
+>> Tese
+Por fim, temos as citações a teses, monografias e dissertações. Nesse caso, é preciso, além de especificar o nome do autor, trazer informações como o número de páginas e o ano de apresentação.
+
+SOBRENOME, nome. Título: subtítulo. Ano de apresentação. Número de folhas ou volumes. (Categoria e área de concentração) – Instituição, Local, ano da defesa.
+
+
+
+
+>> CÓDIGO:
+
