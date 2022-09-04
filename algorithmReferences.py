@@ -48,11 +48,14 @@ def verify_use_integer(variable, verification):
           
 #VERIFICAÇÃO QUANDO USAR STRING
 def verify_use_string(variable, verification):  
-    if variable.isnumeric() or variable.isdigit() or variable == '':
-        clear()
-        print("Erro, tente novamente")
-        sleep(2)
-        verification = True
+    
+    while variable:
+        if variable.isnumeric() or variable.isdigit() or variable == '':
+            clear()
+            print("Erro, tente novamente")
+            sleep(2)
+            verification = True
+
 
 def poweredBy():
     author = "-- REFERENCE FORMAT AND CREATOR SCRIPT -- \nPowered by Thauan Oliveira ©\nInstagram : @thx0liver \nGithub : https://github.com/thauanoliveiraa\nLinkedin : https://www.linkedin.com/in/thauan-de-oliveira-ramos-396b66224/\n"
@@ -66,7 +69,7 @@ while term_of_use:
     if term_of_use.isalpha() and term_of_use == 'Y':
         while referenceData:
             clear()
-            smallTime()
+            verySmallTime()
             referenceData = input("-- TIPOS DE REFERENCIA --\n1 - LIVRO\n2 - ARTIGO ONLINE\n3 - ARTIGO DE REVISTA\n4 - CONSTITUIÇÃO FEDERAL OU ESTADUAL\n5 - LEGISLAÇÃO COMUM\n6 - TESE\n7 - SAIR\n\nInsira o tipo de referencia a ser criada : ")
             if referenceData.isnumeric():
                 referenceData = (int(referenceData)) 
@@ -74,47 +77,52 @@ while term_of_use:
                     clear()
                     print("REFERÊNCIA PARA LIVRO")
                     authorQuantity = True
-                    #while authorQuantity:
-                    authorQuantity = input("Insira a quantidade de autores : ")
-                    if authorQuantity.isnumeric():
-                        authorQuantity = (int(authorQuantity))
-                            #for i in range(authorQuantity):
-                            #for i in range(authorQuantity):
-                                #verification = True
-                        if authorQuantity == 0:
-                            verification = True
-                            while verification:
-                                clear()
-                                title = input("Digite o título : ")
-                                verify_use_string(title, verification=True)
+                    while authorQuantity:
+                        clear()
+                        authorQuantity = input("Insira a quantidade de autores : ")
+                        if authorQuantity.isnumeric():
+                            authorQuantity = (int(authorQuantity))
+                                #for i in range(authorQuantity):
+                                #for i in range(authorQuantity):
+                                    #verification = True
+                            if authorQuantity == 0:
+                                verification = True
+                                while verification:
+                                    clear()
+                                    title = input("Digite o título : ")
+                                    verify_use_string(title, verification=True)
 
-                                city = input("Digite a a cidade : ")
-                                verify_use_string(city, verification=True) 
+                                    city = input("Digite a a cidade : ")
+                                    verify_use_string(city, verification=True) 
 
-                                publishingCompany = input("Digite a editora : ")
-                                verify_use_string(publishingCompany, verification=True)
+                                    publishingCompany = input("Digite a editora : ")
+                                    verify_use_string(publishingCompany, verification=True)
 
-                                publishingYear = input("Digite o ano de publicação : ")
-                                verify_use_integer(publishingYear, verification=True)
+                                    publishingYear = input("Digite o ano de publicação : ")
+                                    verify_use_integer(publishingYear, verification=True)
 
-                                page = input("Digite a página : ")
-                                verify_use_integer(page, verification=True)
-                                # CRIAR LOGICA DE FORMATAÇÃO DE STRING
-                                #bookReferenceNotAuthor = 
-                                verification=False
+                                    page = input("Digite a página : ")
+                                    verify_use_integer(page, verification=True)
+                                    # CRIAR LOGICA DE FORMATAÇÃO DE STRING
+                                    #bookReferenceNotAuthor = 
+                                    verification=False
 
-                                elif authorQuantity == 1:
-                                    print("TESTE")    
-                                elif authorQuantity <= 3:
-                                    print("TESTE")  
-                                elif authorQuantity > 3:
-                                    print("TESTE")                                                 
-                            
-                    #else:
-                     #   clear()
-                      #  print("O que foi digitado não é um número, tente novamente")
-                       # smallTime()
-                        #authorQuantity = True                   
+                                    """ elif authorQuantity == 1:
+                                        print("TESTE")    
+                                        1 - INSERIR : Sobrenome, Nome, Título, Tem subtitulo ? (Sim : colocar / Não : Pass), Tem edição? (Sim : colocar / Não: Pass, Local de publicação, Editora, Data de publicação da obra Edição
+
+                                    elif authorQuantity <= 3:
+                                        print("TESTE")  
+                                    elif authorQuantity > 3:
+                                        print("TESTE")    
+                                    
+                                    """                                                 
+                        else:
+                            clear()
+                            print("O que foi digitado não é um número, tente novamente")
+                            verySmallTime()
+                            authorQuantity = True  
+
                     biggestTime()
                 elif referenceData == 2:
                     clear()
@@ -149,7 +157,7 @@ while term_of_use:
             else:
                 clear()
                 print("O que foi digitado não é um número, tente novamente")
-                smallTime()
+                verySmallTime()
                 referenceData = True     
 
     elif term_of_use == 'N':

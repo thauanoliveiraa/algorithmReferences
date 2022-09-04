@@ -1,0 +1,12 @@
+                    while(checkID(auroraDataList, carID)){
+                        System.out.print("This ID already exist, try again\n\n");
+                        System.out.print("Insert the ID : ");
+                        carID = scan.nextInt(); 
+                    }
+
+
+
+    public static boolean checkID(List<AuroraEnginee> auroraDataList, int carID){
+        AuroraEnginee carCheckID = auroraDataList.stream().filter(x -> x.getCarID() == carID).findFirst().orElse(null);
+        return carCheckID != null;
+    }
